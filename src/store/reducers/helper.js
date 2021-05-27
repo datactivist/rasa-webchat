@@ -1,7 +1,7 @@
 import { Map, fromJS } from 'immutable';
 import { MESSAGES_TYPES, MESSAGE_SENDER, SESSION_NAME } from 'constants';
 
-import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
+import { Video, Image, Message, Carousel, Buttons, Keywords, Results_Display, Feedbacks_Display } from 'messagesComponents';
 
 export function createNewMessage(text, sender, nextMessageIsTooltip, hidden) {
   return Map({
@@ -61,6 +61,49 @@ export function createButtons(buttons, sender) {
     sender,
     showAvatar: true,
     chosenReply: null,
+    timestamp: new Date().getTime()
+  });
+}
+
+export function createKeywords(keywords, sender) {
+  let save = Map({
+    type: MESSAGES_TYPES.KEYWORDS,
+    component: Keywords,
+    text: keywords.text,
+    hint: keywords.hint || 'hint test',
+    keywords: fromJS(keywords.keywords),
+    nb_max_keywords: keywords.nb_max_keywords,
+    sender,
+    showAvatar: true,
+    chosenReply: null,
+    timestamp: new Date().getTime()
+  });
+  return save
+}
+
+export function createResultsDisplay(results, sender) {
+  let save = Map({
+    type: MESSAGES_TYPES.RESULTS_DISPLAY,
+    component: Results_Display,
+    text: results.text,
+    results: fromJS(results.results),
+    nb_max_results: results.nb_max_results,
+    sender,
+    showAvatar: true,
+    timestamp: new Date().getTime()
+  });
+  return save
+}
+
+export function createFeedbacksDisplay(feedbacks, sender) {
+  return Map({
+    type: MESSAGES_TYPES.FEEDBACKS_DISPLAY,
+    component: Feedbacks_Display,
+    text: feedbacks.text,
+    feedbacks: fromJS(feedbacks.feedbacks),
+    nb_max_feedbacks: feedbacks.nb_max_feedbacks,
+    sender,
+    showAvatar: true,
     timestamp: new Date().getTime()
   });
 }

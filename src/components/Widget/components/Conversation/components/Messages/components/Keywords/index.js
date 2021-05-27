@@ -2,15 +2,19 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PROP_TYPES } from 'constants';
-import { addUserMessage, emitUserMessage, setButtons, toggleInputDisabled } from 'actions';
+import { setButtons, toggleInputDisabled } from 'actions';
 import Message from '../Message/index';
 
 import './styles.scss';
 import ThemeContext from '../../../../../../ThemeContext';
 
+let chosenKeywords = []
+const default_max_keywords = 8
 
-class Buttons extends PureComponent {
+class Keywords extends PureComponent {
+
   constructor(props) {
+
     super(props);
     this.handleClick = this.handleClick.bind(this);
 
@@ -22,10 +26,14 @@ class Buttons extends PureComponent {
     } = this.props;
 
     const hint = message.get('hint');
-    const chosenReply = getChosenReply(id);
-    if (!chosenReply && !inputState) {
-      // this.props.toggleInputDisabled();
+
+    if (message.get('keywords') !== undefined && message.get("nb_max_keywords") !== undefined) {
+      message.get('keywords').size, message.get('keywords')._capacity = message.get("nb_max_keywords")
     }
+    else {
+      message.get('keywords').size, message.get('keywords')._capacity = default_max_keywords
+    }
+
   }
 
   handleClick(reply) {
@@ -39,11 +47,12 @@ class Buttons extends PureComponent {
     chooseReply(payload, title, id);
   }
 
-  renderButtons(message, buttons, persit) {
-    const { isLast, linkTarget, separateButtons
+  renderKeywords(message, keywords, persit) {
+
+    const { isLast, linkTarget, separateKeywords
     } = this.props;
     const { userTextColor, userBackgroundColor } = this.context;
-    const buttonStyle = {
+    const keywordStyle = {
       color: userTextColor,
       backgroundColor: userBackgroundColor,
       borderColor: userBackgroundColor
@@ -51,10 +60,10 @@ class Buttons extends PureComponent {
     return (
       <div>
         <Message message={message} />
-        {separateButtons && (<div className="rw-separator" />)}
+        {separateKeywords && (<div className="rw-separator" />)}
         {(isLast || persit) && (
           <div className="rw-replies">
-            {buttons.map((reply, index) => {
+            {keywords.map((reply, index) => {
               if (reply.get('type') === 'web_url') {
                 return (
                   <a
@@ -63,7 +72,7 @@ class Buttons extends PureComponent {
                     target={linkTarget || '_blank'}
                     rel="noopener noreferrer"
                     className={'rw-reply'}
-                    style={buttonStyle}
+                    style={keywordStyle}
                     onMouseUp={e => e.stopPropagation()}
                   >
                     {reply.get('title')}
@@ -76,7 +85,7 @@ class Buttons extends PureComponent {
                   key={index}
                   className={'rw-reply'}
                   onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
-                  style={buttonStyle}
+                  style={keywordStyle}
                   onMouseUp={e => e.stopPropagation()}
                 >
                   {reply.get('title')}
@@ -91,27 +100,54 @@ class Buttons extends PureComponent {
 
 
   render() {
+
     const {
       message,
       getChosenReply,
       id
     } = this.props;
     const chosenReply = getChosenReply(id);
-    if (message.get('quick_replies') !== undefined) {
-      const buttons = message.get('quick_replies');
-      if (chosenReply) {
-        return <Message message={message} />;
+    if (message.get('keywords') !== undefined) {
+      let textarea = document.getElementsByClassName("rw-new-message")[0]
+      let keywords = message.get('keywords')
+      if (chosenReply && textarea) {
+        if (!chosenKeywords.includes(chosenReply)) {
+          chosenKeywords.push(chosenReply)
+          if (chosenKeywords.length > 0) {
+            textarea.value = chosenKeywords.join(" ")
+          }
+        }
+        keywords = removeKeywords(keywords, chosenReply, message.get("nb_max_keywords"));
       }
-      return this.renderButtons(message, buttons, false);
-    } else if (message.get('buttons') !== undefined) {
-      const buttons = message.get('buttons');
-      return this.renderButtons(message, buttons, true);
+      return this.renderKeywords(message, keywords, true);
     }
-    return <Message message={message} />;
   }
 }
 
-Buttons.contextType = ThemeContext;
+function removeKeywords(keywords, keyword_name, nb_max_keywords) {
+
+  if (nb_max_keywords === undefined) {
+    nb_max_keywords = default_max_keywords
+  }
+
+  let output = keywords
+  let keywords_list = []
+  for (let i = 0; i < output._tail.array.length; i++) {
+    if (keywords._tail.array[i]._root.entries[1][1] !== keyword_name) {
+      keywords_list.push(keywords._tail.array[i]);
+    }
+    else {
+      if (output._tail.array.length <= nb_max_keywords) {
+        output.size -= 1
+        output._capacity -= 1
+      }
+    }
+  }
+  output._tail.array = keywords_list
+  return output
+}
+
+Keywords.contextType = ThemeContext;
 
 const mapStateToProps = state => ({
   getChosenReply: id => state.messages.get(id).get('chosenReply'),
@@ -123,19 +159,16 @@ const mapDispatchToProps = dispatch => ({
   toggleInputDisabled: () => dispatch(toggleInputDisabled()),
   chooseReply: (payload, title, id) => {
     dispatch(setButtons(id, title));
-    dispatch(addUserMessage(title));
-    dispatch(emitUserMessage(payload));
-    // dispatch(toggleInputDisabled());
   }
 });
 
-Buttons.propTypes = {
+Keywords.propTypes = {
   getChosenReply: PropTypes.func,
   chooseReply: PropTypes.func,
   id: PropTypes.number,
   isLast: PropTypes.bool,
-  message: PROP_TYPES.BUTTONS,
+  message: PROP_TYPES.KEYWORDS,
   linkTarget: PropTypes.string
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
+export default connect(mapStateToProps, mapDispatchToProps)(Keywords);

@@ -49,6 +49,18 @@ export function addButtons(buttons) {
   store.dispatch(actions.addButtons(buttons));
 }
 
+export function addKeywords(keywords) {
+  store.dispatch(actions.addKeywords(keywords));
+}
+
+export function addResultsDisplay(results) {
+  store.dispatch(actions.addResultsDisplay(results));
+}
+
+export function addFeedbacksDisplay(results) {
+  store.dispatch(actions.addFeedbacksDisplay(results));
+}
+
 export function setButtons(id, title) {
   store.dispatch(actions.setButtons(id, title));
 }

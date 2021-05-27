@@ -18,6 +18,9 @@ export const MESSAGES_TYPES = {
     IMAGE: 'imgreply'
   },
   BUTTONS: 'buttons',
+  KEYWORDS: "keywords",
+  RESULTS_DISPLAY: "results_display",
+  FEEDBACKS_DISPLAY: "feedbacks_display",
   CUSTOM_COMPONENT: 'component'
 };
 
@@ -26,6 +29,19 @@ const replybuttons = PropTypes.shape({
   url: PropTypes.string,
   payload: PropTypes.string,
   type: PropTypes.string
+});
+
+const collapsible = PropTypes.shape({
+  title: PropTypes.string,
+  url: PropTypes.string,
+  description: PropTypes.string,
+  author: PropTypes.string,
+  payload: PropTypes.string,
+});
+
+const feedbacks_checkbox = PropTypes.shape({
+  title: PropTypes.string,
+  payload: PropTypes.string,
 });
 
 const senderType = PropTypes.oneOf([
@@ -41,6 +57,9 @@ export const PROP_TYPES = {
     type: PropTypes.oneOf([
       MESSAGES_TYPES.TEXT,
       MESSAGES_TYPES.BUTTONS,
+      MESSAGES_TYPES.KEYWORDS,
+      MESSAGES_TYPES.RESULTS_DISPLAY,
+      MESSAGES_TYPES.FEEDBACKS_DISPLAY,
       MESSAGES_TYPES.CAROUSEL,
       MESSAGES_TYPES.IMGREPLY.IMAGE,
       MESSAGES_TYPES.VIDREPLY.VIDEO
@@ -100,6 +119,45 @@ export const PROP_TYPES = {
     toggleInputDisabled: PropTypes.func,
     inputState: PropTypes.bool,
     chosenReply: PropTypes.string
+  }),
+
+  KEYWORDS: ImmutablePropTypes.contains({
+    type: PropTypes.oneOf([
+      MESSAGES_TYPES.KEYWORDS
+    ]),
+    id: PropTypes.number,
+    text: PropTypes.string,
+    hint: PropTypes.string,
+    keywords: ImmutablePropTypes.listOf(replybuttons),
+    nb_max_keywords: PropTypes.number,
+    sender: senderType,
+    chooseReply: PropTypes.func,
+    getChosenReply: PropTypes.func,
+    toggleInputDisabled: PropTypes.func,
+    inputState: PropTypes.bool,
+    chosenReply: PropTypes.string
+  }),
+
+  RESULTS_DISPLAY: ImmutablePropTypes.contains({
+    type: PropTypes.oneOf([
+      MESSAGES_TYPES.RESULTS_DISPLAY
+    ]),
+    id: PropTypes.number,
+    text: PropTypes.string,
+    results: ImmutablePropTypes.listOf(collapsible),
+    nb_max_results: PropTypes.number,
+    sender: senderType,
+  }),
+
+  FEEDBACKS_DISPLAY: ImmutablePropTypes.contains({
+    type: PropTypes.oneOf([
+      MESSAGES_TYPES.FEEDBACKS_DISPLAY
+    ]),
+    id: PropTypes.number,
+    text: PropTypes.string,
+    feedbacks: ImmutablePropTypes.listOf(feedbacks_checkbox),
+    nb_max_feedbacks: PropTypes.number,
+    sender: senderType,
   })
 
 };
