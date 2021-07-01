@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Botfront - Web Chat</title>
+  <a href="#" onclick="sessionStorage.clear()">Clear current session</a>
+</head>
+
+<script>!(function () {
+    let e = document.createElement("script"),
+      t = document.head || document.getElementsByTagName("head")[0];
+    (e.src =
+      "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat/lib/index.js"),
+
+      (e.async = !0),
+      (e.onload = () => {
+        window.WebChat.default(
+          {
+            socketUrl: "https://chatbot.datasud.fr",
+            initPayload: "/get_started",
+            customData: { language: "fr" },
+            socketUrl: "https://chatbot.datasud.fr",
+            withRules: true,
+            params: {
+              storage: 'session'
+            },
+
+          },
+          null
+        );
+      }),
+      t.insertBefore(e, t.firstChild);
+  })();
+</script>
+
+</html>

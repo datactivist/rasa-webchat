@@ -178,7 +178,7 @@ export const rasaWebchatProDefaultTypes = {
   connectOn: 'mount',
   onSocketEvent: {},
   protocol: 'socketio',
-  socketUrl: 'http://sud.fr',
+  socketUrl: 'https://chatbot.datasud.fr',
   protocolOptions: {},
   badge: 0,
   embedded: false,
