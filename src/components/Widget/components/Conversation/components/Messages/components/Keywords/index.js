@@ -15,6 +15,8 @@ class Keywords extends PureComponent {
 
   constructor(props) {
 
+    chosenKeywords = []
+
     super(props);
     this.handleClick = this.handleClick.bind(this);
 
@@ -57,6 +59,7 @@ class Keywords extends PureComponent {
       backgroundColor: userBackgroundColor,
       borderColor: userBackgroundColor
     };
+
     return (
       <div>
         <Message message={message} />
@@ -104,9 +107,11 @@ class Keywords extends PureComponent {
     const {
       message,
       getChosenReply,
+      chooseReply,
       id
     } = this.props;
     const chosenReply = getChosenReply(id);
+    chooseReply("", "", -1)
     if (message.get('keywords') !== undefined) {
       let textarea = document.getElementsByClassName("rw-new-message")[0]
       let keywords = message.get('keywords')

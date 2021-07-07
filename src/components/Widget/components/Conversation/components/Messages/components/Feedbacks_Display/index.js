@@ -17,6 +17,9 @@ class Feedbacks_Display extends PureComponent {
 
     super(props);
 
+    deactivated = false
+    feedback = ""
+
     const {
       message,
     } = this.props;
