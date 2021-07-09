@@ -105,6 +105,28 @@ function CustomWidget = () => {
 - Make sure to have the prop `embedded`
 set to `true` if you don't want to see the launcher.
 
+## **Deploying your version**
+
+You need to have an account in npm, create one here: https://www.npmjs.com/signup
+
+Then you need to install both `node` and `npm` in your environment.
+
+Once you're done, you can log in to npm:
+```bash 
+npm login
+```
+
+Modify the content of `package.json`. You need to rename the package name so that it isn't it in conflict with the base package (ex: `@yourname/rasa-webchat`)
+
+You can then publish your version:
+```bash 
+npm publish
+```
+
+Once the package is publish, you can access it in the given script above:
+```js 
+(e.src = "https://cdn.jsdelivr.net/npm/@yourname/rasa-webchat/lib/index.js")
+```
 
 ## **Custom Payload Addition**
 
@@ -135,6 +157,56 @@ payload = {
 dispatcher.utter_message(json.dumps(payload))
 ```
 
+### **Results display**
+
+``` py
+payload = {
+    "type": "custom_payload_results_display",
+    "text": "your_text",
+    "nb_max_results": "<number>"  # Optional, defaulted to 5
+    "results": [
+      {
+        "title": "title1",
+        "author": "author1",
+        "description": "desc1",
+        "url": "url1",
+      },
+      {
+        "title": "title2",
+        "author": "author2",
+        "description": "desc2",
+        "url": "url2",
+      },
+    ]
+}
+
+dispatcher.utter_message(json.dumps(payload))
+```
+
+### **Results feedback**
+
+``` py
+payload = {
+    "type": "custom_payload_feedbacks_display",
+    "nb_max_feedbacks": "<number>"  # Optional, defaulted to 5
+    "feedbacks": [
+      {
+        "title": "title1",
+        "author": "author1",
+        "description": "desc1",
+        "url": "url1",
+      },
+      {
+        "title": "title2",
+        "author": "author2",
+        "description": "desc2",
+        "url": "url2",
+      },
+    ]
+}
+
+dispatcher.utter_message(json.dumps(payload))
+```
 
 ## Parameters
 | Prop / Param           | Default value      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |

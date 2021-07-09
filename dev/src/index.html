@@ -18,7 +18,8 @@
       if (WebChat) WebChat.default({
         initPayload: "/get_started",
         customData: {},
-        socketUrl: "https://chatbot.datasud.fr",
+        // local -> localhost:5005 | local docker -> localhost:80 |
+        socketUrl: "http://localhost:5005",
         withRules: true,
         params: {
           storage: 'session'
