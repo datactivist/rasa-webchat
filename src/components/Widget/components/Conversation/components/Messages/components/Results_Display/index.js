@@ -23,7 +23,7 @@ class Results_Display extends PureComponent {
     } = this.props;
 
     if (message.get('results') !== undefined && message.get("nb_max_results") !== undefined) {
-      message.get('results').size, message.get('results')._capacity = message.get("nb_max_results")
+      message.get('results')._capacity = Math.min(message.get("nb_max_results"), message.get('results').size)
     }
     else {
       message.get('results').size, message.get('results')._capacity = default_max_results

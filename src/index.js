@@ -214,7 +214,7 @@ ConnectedWidget.propTypes = {
 };
 
 ConnectedWidget.defaultProps = {
-  title: 'Welcome',
+  title: 'Databot',
   customData: {},
   inputTextFieldHint: 'Type a message...',
   connectingText: 'Waiting for server...',

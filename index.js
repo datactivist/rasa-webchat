@@ -168,7 +168,7 @@ RasaWebchatProWithRules.propTypes = {
 };
 
 export const rasaWebchatProDefaultTypes = {
-  title: 'Welcome',
+  title: 'Databot',
   customData: {},
   inputTextFieldHint: 'Type a message...',
   connectingText: 'Waiting for server...',
