@@ -30,7 +30,7 @@ class Keywords extends PureComponent {
     const hint = message.get('hint');
 
     if (message.get('keywords') !== undefined && message.get("nb_max_keywords") !== undefined) {
-      message.get('keywords').size, message.get('keywords')._capacity = message.get("nb_max_keywords")
+      message.get('keywords')._capacity = Math.min(message.get("nb_max_keywords"), message.get('keywords').size)
     }
     else {
       message.get('keywords').size, message.get('keywords')._capacity = default_max_keywords
@@ -67,33 +67,20 @@ class Keywords extends PureComponent {
         {(isLast || persit) && (
           <div className="rw-replies">
             {keywords.map((reply, index) => {
-              if (reply.get('type') === 'web_url') {
+              if (reply) {
                 return (
-                  <a
+                  // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                  <div
                     key={index}
-                    href={reply.get('url')}
-                    target={linkTarget || '_blank'}
-                    rel="noopener noreferrer"
                     className={'rw-reply'}
+                    onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
                     style={keywordStyle}
                     onMouseUp={e => e.stopPropagation()}
                   >
                     {reply.get('title')}
-                  </a>
+                  </div>
                 );
               }
-              return (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div
-                  key={index}
-                  className={'rw-reply'}
-                  onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
-                  style={keywordStyle}
-                  onMouseUp={e => e.stopPropagation()}
-                >
-                  {reply.get('title')}
-                </div>
-              );
             })}
           </div>
         )}
@@ -114,7 +101,7 @@ class Keywords extends PureComponent {
     chooseReply("", "", -1)
     if (message.get('keywords') !== undefined) {
       let textarea = document.getElementsByClassName("rw-new-message")[0]
-      let keywords = message.get('keywords')
+      let keywords = cleanKeywordsList(message.get('keywords'))
       if (chosenReply && textarea) {
         if (!chosenKeywords.includes(chosenReply)) {
           chosenKeywords.push(chosenReply)
@@ -137,6 +124,7 @@ function removeKeywords(keywords, keyword_name, nb_max_keywords) {
 
   let output = keywords
   let keywords_list = []
+
   for (let i = 0; i < output._tail.array.length; i++) {
     if (keywords._tail.array[i]._root.entries[1][1] !== keyword_name) {
       keywords_list.push(keywords._tail.array[i]);
@@ -150,6 +138,31 @@ function removeKeywords(keywords, keyword_name, nb_max_keywords) {
   }
   output._tail.array = keywords_list
   return output
+}
+
+function cleanKeywordsList(keywords) {
+
+  let keywords_list = []
+  let output = keywords
+
+  if (keywords._root) {
+    for (let i = 0; i < keywords._root.array[0].array.length; i++) {
+      keywords_list.push(keywords._root.array[0].array[i])
+    }
+  }
+
+  if (keywords._tail) {
+    for (let i = 0; i < keywords._tail.array.length; i++) {
+      keywords_list.push(keywords._tail.array[i])
+    }
+  }
+
+  output._root = null
+  //output._tail.array = null
+  output._tail.array = keywords_list
+
+  return output
+
 }
 
 Keywords.contextType = ThemeContext;
