@@ -85,6 +85,10 @@ export function toggleChat() {
   store.dispatch(actions.toggleChat());
 }
 
+export function restartConversation() {
+  store.dispatch(actions.restartConversation());
+}
+
 export function showChat() {
   store.dispatch(actions.showChat());
 }

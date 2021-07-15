@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   toggleFullScreen,
   toggleChat,
+  restartConversation,
   openChat,
   closeChat,
   showChat,
@@ -527,6 +528,12 @@ class Widget extends Component {
     dispatch(toggleChat());
   }
 
+  restartChat() {
+    sessionStorage.clear();
+    location.reload();
+    console.log("restarting (joke)")
+  }
+
   toggleFullScreen() {
     this.props.dispatch(toggleFullScreen());
   }
@@ -606,6 +613,7 @@ class Widget extends Component {
     return (
       <WidgetLayout
         toggleChat={() => this.toggleConversation()}
+        restartConversation={() => this.restartChat()}
         toggleFullScreen={() => this.toggleFullScreen()}
         onSendMessage={event => this.handleMessageSubmit(event)}
         title={this.props.title}
@@ -614,6 +622,7 @@ class Widget extends Component {
         profileAvatar={this.props.profileAvatar}
         showCloseButton={this.props.showCloseButton}
         showFullScreenButton={this.props.showFullScreenButton}
+        showRestartButton={this.props.showRestartButton}
         hideWhenNotConnected={this.props.hideWhenNotConnected}
         fullScreenMode={this.props.fullScreenMode}
         isChatOpen={this.props.isChatOpen}
@@ -654,6 +663,7 @@ Widget.propTypes = {
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   showFullScreenButton: PropTypes.bool,
+  showRestartButton: PropTypes.bool,
   hideWhenNotConnected: PropTypes.bool,
   connectOn: PropTypes.oneOf(['mount', 'open']),
   autoClearCache: PropTypes.bool,

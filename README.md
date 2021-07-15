@@ -44,6 +44,99 @@
 </a>
 
 
+# Fork Additions
+
+## **Custom Payload Addition**
+
+### **Keywords**
+Allow the user to select multiple quick replies.
+
+Usage from rasa:
+
+``` py
+payload = {
+    "type": "custom_payload_keywords",
+    "text": "Your text",
+    "nb_max_keywords": "<number>"  # Optional, defaulted to 8
+    "keywords": [
+      {
+        "content_type": "text",
+        "title": "reply1",
+        "payload": "id1"
+      },
+      {
+        "content_type": "text",
+        "title": "reply2",
+        "payload": "id2"
+      },
+    ]
+}
+
+dispatcher.utter_message(json.dumps(payload))
+```
+
+### **Results display**
+
+``` py
+payload = {
+    "type": "custom_payload_results_display",
+    "text": "your_text",
+    "nb_max_results": "<number>"  # Optional, defaulted to 5
+    "results": [
+      {
+        "title": "title1",
+        "author": "author1",
+        "description": "desc1",
+        "url": "url1",
+      },
+      {
+        "title": "title2",
+        "author": "author2",
+        "description": "desc2",
+        "url": "url2",
+      },
+    ]
+}
+
+dispatcher.utter_message(json.dumps(payload))
+```
+
+### **Results feedback**
+
+``` py
+payload = {
+    "type": "custom_payload_feedbacks_display",
+    "nb_max_feedbacks": "<number>"  # Optional, defaulted to 5
+    "feedbacks": [
+      {
+        "title": "title1",
+        "author": "author1",
+        "description": "desc1",
+        "url": "url1",
+      },
+      {
+        "title": "title2",
+        "author": "author2",
+        "description": "desc2",
+        "url": "url2",
+      },
+    ]
+}
+
+dispatcher.utter_message(json.dumps(payload))
+```
+
+## Widget Parameter addition
+
+**showRestartButton**: Display a restart button in the widget header that let the user restart the conversation with the bot
+
+usage:
+```javascript
+<Widget
+  showRestartButton=True,
+/>
+```
+
 ## Usage
 
 ### In a `<script>` tag
@@ -128,86 +221,6 @@ Once the package is publish, you can access it in the given script above:
 (e.src = "https://cdn.jsdelivr.net/npm/@yourname/rasa-webchat/lib/index.js")
 ```
 
-## **Custom Payload Addition**
-
-### **Keywords**
-Allow the user to select multiple quick replies.
-
-Usage from rasa:
-
-``` py
-payload = {
-    "type": "custom_payload_keywords",
-    "text": "Your text",
-    "nb_max_keywords": "<number>"  # Optional, defaulted to 8
-    "keywords": [
-      {
-        "content_type": "text",
-        "title": "reply1",
-        "payload": "id1"
-      },
-      {
-        "content_type": "text",
-        "title": "reply2",
-        "payload": "id2"
-      },
-    ]
-}
-
-dispatcher.utter_message(json.dumps(payload))
-```
-
-### **Results display**
-
-``` py
-payload = {
-    "type": "custom_payload_results_display",
-    "text": "your_text",
-    "nb_max_results": "<number>"  # Optional, defaulted to 5
-    "results": [
-      {
-        "title": "title1",
-        "author": "author1",
-        "description": "desc1",
-        "url": "url1",
-      },
-      {
-        "title": "title2",
-        "author": "author2",
-        "description": "desc2",
-        "url": "url2",
-      },
-    ]
-}
-
-dispatcher.utter_message(json.dumps(payload))
-```
-
-### **Results feedback**
-
-``` py
-payload = {
-    "type": "custom_payload_feedbacks_display",
-    "nb_max_feedbacks": "<number>"  # Optional, defaulted to 5
-    "feedbacks": [
-      {
-        "title": "title1",
-        "author": "author1",
-        "description": "desc1",
-        "url": "url1",
-      },
-      {
-        "title": "title2",
-        "author": "author2",
-        "description": "desc2",
-        "url": "url2",
-      },
-    ]
-}
-
-dispatcher.utter_message(json.dumps(payload))
-```
-
 ## Parameters
 | Prop / Param           | Default value      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ---------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -224,6 +237,7 @@ dispatcher.utter_message(json.dumps(payload))
 | `onSocketEvent`        | `null`             | call custom code on a specific socket event                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `embedded`             | `false`            | Set to `true` if you want to embed the in a web page. The widget will always be open and the `initPayload` will be triggered immediately                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `showFullScreenButton` | `false`            | Show a full screen toggle                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `showRestartButton`    | `false`            | Show a reload button to restart the conversation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `displayUnreadCount`   | `false`            | Path to an image displayed on the launcher when the widget is closed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `showMessageDate`      | `false`            | Show message date. Can be overriden with a function: `(timestamp, message) => return 'my custom date'`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `customMessageDelay`   | See below          | This prop is a function, the function take a message string as an argument. The defined function will be called everytime a message is received and the returned value will be used as a milliseconds delay before displaying a new message.                                                                                                                                                                                                                                                                                                                                                                |

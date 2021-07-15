@@ -29,12 +29,14 @@ const WidgetLayout = (props) => {
           sendMessage={props.onSendMessage}
           profileAvatar={props.profileAvatar}
           toggleChat={props.toggleChat}
+          restartConversation={props.restartConversation}
           isChatOpen={props.isChatOpen}
           toggleFullScreen={props.toggleFullScreen}
           fullScreenMode={props.fullScreenMode}
           disabledInput={props.disabledInput}
           params={props.params}
           showFullScreenButton={props.showFullScreenButton}
+          showRestartButton={props.showRestartButton}
           {...{ showCloseButton }}
           connected={props.connected}
           connectingText={props.connectingText}
@@ -47,6 +49,7 @@ const WidgetLayout = (props) => {
       {!props.embedded && (
         <Launcher
           toggle={props.toggleChat}
+          restart={props.restartConversation}
           isChatOpen={props.isChatOpen}
           badge={props.badge}
           fullScreenMode={props.fullScreenMode}
@@ -73,12 +76,14 @@ WidgetLayout.propTypes = {
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   onSendMessage: PropTypes.func,
   toggleChat: PropTypes.func,
+  restartConversation: PropTypes.func,
   toggleFullScreen: PropTypes.func,
   isChatOpen: PropTypes.bool,
   isChatVisible: PropTypes.bool,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   showFullScreenButton: PropTypes.bool,
+  showRestartButton: PropTypes.bool,
   hideWhenNotConnected: PropTypes.bool,
   disabledInput: PropTypes.bool,
   fullScreenMode: PropTypes.bool,

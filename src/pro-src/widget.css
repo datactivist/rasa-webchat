@@ -22,3 +22,20 @@
 .rw-conversation-container .rw-message .rw-markdown p {
     font-size: 11pt;
 }
+
+.rw-conversation-container .rw-restart-conversation-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    width: 40px;
+    cursor: pointer;
+}
+
+.rw-conversation-container .rw-restart-conversation {
+    width: 30px;
+    height: 30px;
+    padding-top: 3px;
+}

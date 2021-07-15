@@ -7,6 +7,7 @@ export const GET_FULLSCREEN_STATE = 'GET_FULLSCREEN_STATE';
 export const SHOW_CHAT = 'SHOW_CHAT';
 export const HIDE_CHAT = 'HIDE_CHAT';
 export const TOGGLE_CHAT = 'TOGGLE_CHAT';
+export const RESTART_CONVERSATION = "RESTART_CONVERSATION";
 export const OPEN_CHAT = 'OPEN_CHAT';
 export const CLOSE_CHAT = 'CLOSE_CHAT';
 export const TOGGLE_FULLSCREEN = 'TOGGLE_FULLSCREEN';

@@ -44,6 +44,9 @@ export default function (
 
         return storeParams(state.update('isChatOpen', isChatOpen => !isChatOpen).set('unreadCount', 0));
       }
+      case actionTypes.RESTART_CONVERSATION: {
+        return storeParams(state.set('unreadCount', 0));
+      }
       case actionTypes.OPEN_CHAT: {
         if (onWidgetEvent.onChatOpen) onWidgetEvent.onChatOpen();
         return storeParams(state.update('isChatOpen', () => true).set('unreadCount', 0));

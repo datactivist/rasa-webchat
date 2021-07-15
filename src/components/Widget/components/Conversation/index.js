@@ -12,10 +12,12 @@ const Conversation = props =>
       title={props.title}
       subtitle={props.subtitle}
       toggleChat={props.toggleChat}
+      restartConversation={props.restartConversation}
       toggleFullScreen={props.toggleFullScreen}
       fullScreenMode={props.fullScreenMode}
       showCloseButton={props.showCloseButton}
       showFullScreenButton={props.showFullScreenButton}
+      showRestartButton={props.showRestartButton}
       connected={props.connected}
       connectingText={props.connectingText}
       closeImage={props.closeImage}
@@ -42,8 +44,10 @@ Conversation.propTypes = {
   toggleFullScreen: PropTypes.func,
   fullScreenMode: PropTypes.bool,
   toggleChat: PropTypes.func,
+  restartConversation: PropTypes.func,
   showCloseButton: PropTypes.bool,
   showFullScreenButton: PropTypes.bool,
+  showRestartButton: PropTypes.bool,
   disabledInput: PropTypes.bool,
   inputTextFieldHint: PropTypes.string,
   params: PropTypes.object,

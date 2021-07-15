@@ -48,6 +48,12 @@ export function toggleChat() {
   };
 }
 
+export function restartConversation() {
+  return {
+    type: actions.RESTART_CONVERSATION
+  };
+}
+
 export function openChat() {
   return {
     type: actions.OPEN_CHAT

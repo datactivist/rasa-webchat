@@ -135,6 +135,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
           profileAvatar={props.profileAvatar}
           showCloseButton={props.showCloseButton}
           showFullScreenButton={props.showFullScreenButton}
+          showRestartButton={props.showRestartButton}
           hideWhenNotConnected={props.hideWhenNotConnected}
           connectOn={props.connectOn}
           autoClearCache={props.autoClearCache}
@@ -178,6 +179,7 @@ ConnectedWidget.propTypes = {
   connectingText: PropTypes.string,
   showCloseButton: PropTypes.bool,
   showFullScreenButton: PropTypes.bool,
+  showRestartButton: PropTypes.bool,
   hideWhenNotConnected: PropTypes.bool,
   connectOn: PropTypes.oneOf(['mount', 'open']),
   autoClearCache: PropTypes.bool,
@@ -234,6 +236,7 @@ ConnectedWidget.defaultProps = {
   docViewer: false,
   showCloseButton: true,
   showFullScreenButton: false,
+  showRestartButton: false,
   displayUnreadCount: false,
   showMessageDate: false,
   customMessageDelay: (message) => {

@@ -3,8 +3,7 @@
 
 <head>
 
-  <title>Botfront - Web Chat</title>
-  <a href="#" onclick="sessionStorage.clear(); location.reload();">Clear current session</a>
+  <title>Databot - Testing ground</title>
   <script src="index.js" type="text/javascript"></script>
 
 </head>
@@ -19,6 +18,8 @@
       if (WebChat) WebChat.default({
         initPayload: "/get_started",
         customData: {},
+        showRestartButton: true,
+        showFullScreenButton: true,
         // local -> localhost:5005 | local docker -> localhost:80 |
         socketUrl: "http://localhost:5005",
         withRules: true,
