@@ -2,34 +2,39 @@
 <html lang="en">
 
 <head>
-  <title>Botfront - Web Chat</title>
-  <a href="#" onclick="sessionStorage.clear(); location.reload();">Clear current session</a>
+  <title>Databot - Testing ground</title>
 </head>
 
-<script>!(function () {
-    let e = document.createElement("script"),
-      t = document.head || document.getElementsByTagName("head")[0];
-    (e.src =
-      "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat/lib/index.js"),
+<body style="background-image: url(https://i.ibb.co/Bq3WQhB/datasudscreen.png);">
 
-      (e.async = !0),
-      (e.onload = () => {
-        window.WebChat.default(
-          {
-            socketUrl: "https://chatbot.datasud.fr",
-            initPayload: "/get_started",
-            customData: { language: "fr" },
-            withRules: true,
-            params: {
-              storage: 'session'
+  <script>!(function () {
+      let e = document.createElement("script"),
+        t = document.head || document.getElementsByTagName("head")[0];
+      (e.src =
+        "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat/lib/index.js"),
+
+        (e.async = !0),
+        (e.onload = () => {
+          window.WebChat.default(
+            {
+              socketUrl: "https://chatbot.datasud.fr",
+              initPayload: "/get_started",
+              customData: { language: "fr" },
+              withRules: true,
+              showRestartButton: true,
+              showFullScreenButton: true,
+              params: {
+                storage: 'session'
+              },
+
             },
+            null
+          );
+        }),
+        t.insertBefore(e, t.firstChild);
+    })();
+  </script>
 
-          },
-          null
-        );
-      }),
-      t.insertBefore(e, t.firstChild);
-  })();
-</script>
+</body>
 
 </html>
