@@ -531,7 +531,6 @@ class Widget extends Component {
   restartChat() {
     sessionStorage.clear();
     location.reload();
-    console.log("restarting (joke)")
   }
 
   toggleFullScreen() {
