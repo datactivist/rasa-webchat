@@ -38,8 +38,9 @@ const Header = ({
             <button className="rw-restart-conversation-button" onClick={restartConversation}>
               <img
                 className={`rw-restart-conversation`}
+                title="Réinitialiser le chatbot"
                 src={restart}
-                alt="Redémarrer la conversation"
+                alt="Réinitialiser le chatbot"
               />
             </button>
           }
@@ -48,6 +49,7 @@ const Header = ({
             <button className="rw-toggle-fullscreen-button" onClick={toggleFullScreen}>
               <img
                 className={`rw-toggle-fullscreen ${fullScreenMode ? 'rw-fullScreenExitImage' : 'rw-fullScreenImage'}`}
+                title={fullScreenMode ? "Sortir du mode plein écran" : "Entrer en mode plein écran"}
                 src={fullScreenMode ? fullscreenExit : fullscreen}
                 alt="toggle fullscreen"
               />
@@ -58,6 +60,7 @@ const Header = ({
             <button className="rw-close-button" onClick={toggleChat}>
               <img
                 className={`rw-close ${closeImage ? '' : 'rw-default'}`}
+                title="Fermer l'interface"
                 src={closeImage || close}
                 alt="close"
               />
