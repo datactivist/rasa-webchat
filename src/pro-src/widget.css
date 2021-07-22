@@ -14,15 +14,17 @@
     background-color: #F5360D;
 }
 
-
+/* widget */
 .rw-conversation-container {
     width: 700px;
 }
 
+/* font size of markdown content */
 .rw-conversation-container .rw-message .rw-markdown p {
     font-size: 11pt;
 }
 
+/* restart button */
 .rw-conversation-container .rw-restart-conversation-button {
     display: flex;
     justify-content: center;
@@ -38,4 +40,11 @@
     width: 30px;
     height: 30px;
     padding-top: 3px;
+}
+
+/* quick replies buttons */
+.rw-conversation-container .rw-reply {
+    max-width: 700px;
+    padding-right:49px;
+    padding-left: 29px;
 }
