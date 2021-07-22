@@ -72,7 +72,7 @@ class Keywords extends PureComponent {
                   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
                   <div
                     key={index}
-                    className={'rw-reply'}
+                    className={'rw-reply-mult'}
                     onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
                     style={keywordStyle}
                     onMouseUp={e => e.stopPropagation()}
