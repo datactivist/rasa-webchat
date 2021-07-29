@@ -17,6 +17,8 @@
         (e.onload = () => {
           window.WebChat.default(
             {
+              title: 'Databot',
+              inputTextFieldHint: "Ecrivez votre message...",
               socketUrl: "https://chatbot.datasud.fr",
               initPayload: "/get_started",
               customData: { language: "fr" },

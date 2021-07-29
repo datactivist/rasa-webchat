@@ -24,7 +24,7 @@ class Buttons extends PureComponent {
     const hint = message.get('hint');
     const chosenReply = getChosenReply(id);
     if (!chosenReply && !inputState) {
-      // this.props.toggleInputDisabled();
+      this.props.toggleInputDisabled();
     }
   }
 
@@ -125,7 +125,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setButtons(id, title));
     dispatch(addUserMessage(title));
     dispatch(emitUserMessage(payload));
-    // dispatch(toggleInputDisabled());
+    dispatch(toggleInputDisabled());
   }
 });
 

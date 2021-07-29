@@ -17,7 +17,9 @@
     const load = () => {
       if (!WebChat) setTimeout(load, 100);
       if (WebChat) WebChat.default({
+        title: 'Databot',
         initPayload: "/get_started",
+        inputTextFieldHint: "Ecrivez votre message...",
         customData: {},
         showRestartButton: true,
         showFullScreenButton: true,

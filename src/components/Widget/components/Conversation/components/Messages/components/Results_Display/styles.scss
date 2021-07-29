@@ -30,3 +30,14 @@
   font-size: 12px;
 }
 
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 10px;
+  color: white;
+  float: right;
+  margin-top: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
