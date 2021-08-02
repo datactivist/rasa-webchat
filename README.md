@@ -209,10 +209,11 @@ Once you're done, you can log in to npm:
 npm login
 ```
 
-Modify the content of `package.json`. You need to rename the package name so that it isn't it in conflict with the base package (ex: `@yourname/rasa-webchat`)
+Modify the content of `package.json` to your convenience. You need to rename the package name so that it isn't it in conflict with the base package (ex: `@yourname/rasa-webchat`). You also need to change the version if it already exists for this package name.
 
 You can then publish your version:
 ```bash 
+npm run build
 npm publish
 ```
 
