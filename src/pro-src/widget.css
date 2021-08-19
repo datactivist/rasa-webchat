@@ -12,7 +12,26 @@
 
 .rw-launcher{
     background-color: #135afe;
+    padding: 1px 6px;
 }
+
+/*.text-area{  
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    flex-direction: column;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    column-count: initial !important;
+    margin: 0em;
+}*/
 
 /* widget */
 .rw-conversation-container {
@@ -34,6 +53,21 @@
     border: 0;
     width: 40px;
     cursor: pointer;
+    padding: 1px 6px;
+}
+
+.rw-conversation-container .rw-send{
+    padding: 1px 6px;
+}
+
+/* full screen button override */
+.rw-conversation-container .rw-toggle-fullscreen-button{
+    padding: 1px 6px;
+}
+
+/* full screen button reversed override */
+.rw-full-screen .rw-close-button, .rw-full-screen .rw-toggle-fullscreen-button{
+    padding: 1px 6px;
 }
 
 .rw-conversation-container .rw-restart-conversation {
@@ -41,6 +75,14 @@
     height: 30px;
     padding-top: 3px;
 }
+
+
+/* text area override */
+.rw-conversation-container .rw-new-message {
+    padding: 2px 2px 2px 15px;
+    margin: 0px;
+}
+
 
 /* choice quick replies buttons */
 .rw-conversation-container .rw-reply {

@@ -38,7 +38,7 @@ class Results_Display extends PureComponent {
     for (i = 0; i < coll.length; i++) {
       if (coll[i].textContent === reply.get("title")) {
 
-        coll[i].classList.toggle("active");
+        coll[i].classList.toggle("active_collapsible");
         var content = coll[i].nextElementSibling;
         if (content.style.maxHeight) {
           content.style.maxHeight = null;

@@ -5,6 +5,7 @@ import { PROP_TYPES } from 'constants';
 import { emitUserMessage, toggleInputDisabled } from 'actions';
 import ThemeContext from '../../../../../../ThemeContext';
 
+import './styles.scss';
 
 const default_max_feedbacks = 5
 
@@ -70,6 +71,7 @@ class Feedbacks_Display extends PureComponent {
               >
                 <input
                   type="checkbox"
+                  className="checkbox_feedback"
                   name={"feed" + index}
                   value={index}
                   onChange={(e) => { e.stopPropagation(); this.change_feedback(index); }}
@@ -80,7 +82,7 @@ class Feedbacks_Display extends PureComponent {
           })}
           <input
             type="submit"
-            className="submit_button"
+            className="submit_feedback_button"
             onClick={(e) => { e.stopPropagation(); this.submit_feedback(); }}
           />
         </div>
