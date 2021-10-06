@@ -144,25 +144,36 @@ usage:
 In your `<body/>`:
 ```html
 <script>!(function () {
-  let e = document.createElement("script"),
-    t = document.head || document.getElementsByTagName("head")[0];
-  (e.src =
-    "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
-    // Replace 1.x.x with the version that you want
-    (e.async = !0),
-    (e.onload = () => {
-      window.WebChat.default(
-        {
-          customData: { language: "en" },
-          socketUrl: "https://bf-botfront.development.agents.botfront.cloud",
-          // add other props here
-        },
-        null
-      );
-    }),
-    t.insertBefore(e, t.firstChild);
-})();
-</script>
+      let e = document.createElement("script"),
+        t = document.head || document.getElementsByTagName("head")[0];
+      (e.src =
+        "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat/lib/index.js"),
+
+        (e.async = !0),
+        (e.onload = () => {
+          console.log(window.screen.width)
+          if (window.screen.width > 700) {
+	    window.WebChat.default(
+	      {
+	        title: 'Databot',
+	        inputTextFieldHint: "Ecrivez votre message...",
+	        socketUrl: "https://chatbot.datasud.fr",
+	        initPayload: "/get_started",
+	        customData: { language: "fr" },
+	        withRules: true,
+	        showRestartButton: true,
+	        showFullScreenButton: true,
+	        params: {
+	          storage: 'session'
+	        },
+	      },
+	      null
+	  );
+          }
+        }),
+        t.insertBefore(e, t.firstChild);
+    })();
+  </script>
 ```
 
 ⚠️ We recommend adding a version tag to prevent breaking changes from major versions, e.g for version 1.0.0 https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.0/lib/index.js,
