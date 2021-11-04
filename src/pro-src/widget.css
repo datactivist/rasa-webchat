@@ -1,18 +1,24 @@
 .rw-conversation-container .rw-header{
-    background-color: #0072BC;
+    background-color: #79B51C;
 }
 
 .rw-conversation-container .rw-client{
-       background-color: #0072BC !important; 
+       background-color: #79B51C !important; 
 }
 
 .conversation-container close-button {
-    background-color: #0072BC;
+    background-color: #79B51C;
 }
 
 .rw-launcher{
-    background-color: #135afe;
+    background-color: #5a8b10;
     padding: 1px 6px;
+}
+
+/* Quick Reply button */
+.rw-conversation-container .rw-reply {
+    background-color: #79B51C;
+    border-color: #5a8b10;
 }
 
 /*.text-area{  
@@ -106,8 +112,8 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    background-color: #135afe;
-    border-color: #135afe;
+    background-color: #79B51C;
+    border-color: #79B51C;
     border-radius: 15px;
     border-width: 1px;
     color: #f4f7f9;

@@ -79,7 +79,7 @@ class Results_Display extends PureComponent {
               >
                 <ReactMarkdown
                   className={'rw-markdown'}
-                  source={"[Accéder au jeu de données](" + reply.get("url") + ")\n\n**Producteur:** " + reply.get("author") + "\n\n**Description:** \n\n" + reply.get('description')}
+                  source={"[Accéder à la ressource](" + reply.get("url") + ")\n\n**Producteur:** " + reply.get("author") + "\n\n**Description:** \n\n" + reply.get('description')}
                   linkTarget={(url) => {
                     if (!url.startsWith('mailto') && !url.startsWith('javascript')) return '_blank';
                     return undefined;
