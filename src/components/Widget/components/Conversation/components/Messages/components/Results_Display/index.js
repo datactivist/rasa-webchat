@@ -78,8 +78,17 @@ class Results_Display extends PureComponent {
                 className={"collapsible-content"}
               >
                 <ReactMarkdown
-                  className={'rw-markdown'}
-                  source={"[Accéder à la ressource](" + reply.get("url") + ")\n\n**Producteur:** " + reply.get("author") + "\n\n**Description:** \n\n" + reply.get('description')}
+                  className={'rw-markdown-link'}
+                  source={"[Accéder à la ressource](" + reply.get("url") + ")"}
+                  linkTarget={(url) => {
+                    if (!url.startsWith('mailto') && !url.startsWith('javascript')) return '_blank';
+                    return undefined;
+                  }}
+                  transformLinkUri={null}
+                />
+                <ReactMarkdown
+                  className={'rw-markdown-content'}
+                  source={"**Producteur:** " + reply.get("author") + "\n\n**Description:** \n\n" + reply.get('description')}
                   linkTarget={(url) => {
                     if (!url.startsWith('mailto') && !url.startsWith('javascript')) return '_blank';
                     return undefined;

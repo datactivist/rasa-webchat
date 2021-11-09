@@ -1,24 +1,24 @@
 .rw-conversation-container .rw-header{
-    background-color: #79B51C;
+    background-color: #0cc2aa;
 }
 
 .rw-conversation-container .rw-client{
-       background-color: #79B51C !important; 
+       background-color: #0cc2aa !important; 
 }
 
 .conversation-container close-button {
-    background-color: #79B51C;
+    background-color: #0cc2aa;
 }
 
 .rw-launcher{
-    background-color: #5a8b10;
+    background-color: #0cc2aa;
     padding: 1px 6px;
 }
 
 /* Quick Reply button */
 .rw-conversation-container .rw-reply {
-    background-color: #79B51C;
-    border-color: #5a8b10;
+    background-color: #0cc2aa;
+    border-color: #0cc2aa;
 }
 
 /*.text-area{  
