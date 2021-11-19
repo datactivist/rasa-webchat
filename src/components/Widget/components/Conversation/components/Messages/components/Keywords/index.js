@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { PROP_TYPES } from 'constants';
-import { setButtons, toggleInputDisabled } from 'actions';
+import { addUserMessage, emitUserMessage, setButtons, toggleInputDisabled } from 'actions';
 import Message from '../Message/index';
 
 import './styles.scss';
@@ -49,6 +49,16 @@ class Keywords extends PureComponent {
     chooseReply(payload, title, id);
   }
 
+  handleNoneClick() {
+    const {
+      chooseReply,
+      id
+    } = this.props;
+
+    console.log("clickety Updated!!!")
+    chooseReply("/deny", "Aucun", 0, true)
+  }
+
   renderKeywords(message, keywords, persit) {
 
     const { isLast, linkTarget, separateKeywords
@@ -68,8 +78,7 @@ class Keywords extends PureComponent {
           <div className="rw-replies">
             {keywords.map((reply, index) => {
               if (reply) {
-                return (
-                  // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                let div_keywords = (
                   <div
                     key={index}
                     className={'rw-reply-mult'}
@@ -80,10 +89,19 @@ class Keywords extends PureComponent {
                     {reply.get('title')}
                   </div>
                 );
+                console.log(div_keywords)
+                return div_keywords
               }
             })}
           </div>
         )}
+        {
+          <div
+            className="rw-no-reply"
+            onClick={(e) => { e.stopPropagation(); this.handleNoneClick() }}>
+            Aucun
+          </div>
+        }
       </div>
     );
   }
@@ -175,8 +193,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleInputDisabled: () => dispatch(toggleInputDisabled()),
-  chooseReply: (payload, title, id) => {
+  chooseReply: (payload, title, id, isFinal = false) => {
     dispatch(setButtons(id, title));
+    if (isFinal) {
+      dispatch(addUserMessage(title));
+      dispatch(emitUserMessage(payload));
+      dispatch(toggleInputDisabled());
+    }
   }
 });
 

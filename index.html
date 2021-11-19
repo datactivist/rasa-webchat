@@ -11,27 +11,29 @@
       let e = document.createElement("script"),
         t = document.head || document.getElementsByTagName("head")[0];
       (e.src =
-        "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat/lib/index.js"),
+        "https://cdn.jsdelivr.net/npm/@anthonygigerich/rasa-webchat-dreal/lib/index.js"),
 
         (e.async = !0),
         (e.onload = () => {
-          window.WebChat.default(
-            {
-              title: 'Databot',
-              inputTextFieldHint: "Ecrivez votre message...",
-              socketUrl: "https://chatbot.datasud.fr",
-              initPayload: "/get_started",
-              customData: { language: "fr" },
-              withRules: true,
-              showRestartButton: true,
-              showFullScreenButton: true,
-              params: {
-                storage: 'session'
-              },
-
-            },
-            null
-          );
+          console.log(window.screen.width)
+          if (window.screen.width > 500) {
+	    window.WebChat.default(
+	      {
+	        title: 'Databot',
+	        inputTextFieldHint: "Ecrivez votre message...",
+	        socketUrl: "https://chatbot.sidonie-paca.fr",
+	        initPayload: "/get_started",
+	        customData: { language: "fr" },
+	        withRules: true,
+	        showRestartButton: true,
+	        showFullScreenButton: true,
+	        params: {
+	          storage: 'session'
+	        },
+	      },
+	      null
+	  );
+          }
         }),
         t.insertBefore(e, t.firstChild);
     })();
