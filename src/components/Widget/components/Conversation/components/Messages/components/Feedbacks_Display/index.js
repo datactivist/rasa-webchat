@@ -59,26 +59,41 @@ class Feedbacks_Display extends PureComponent {
 
   }
 
+  get_title(reply) {
+    if (reply) {
+      if (reply.get('title').length > 55) {
+        return reply.get('title').substring(0, 65) + "..."
+      }
+      else {
+        return reply.get('title')
+      }
+    }
+  }
+
   renderFeedbacksDisplay(message, feedbacks) {
+
+    console.log(feedbacks)
 
     if (!deactivated) {
       return (
         <div>
           {feedbacks.map((reply, index) => {
-            return (
-              <div
-                key={"feedb" + index}
-              >
-                <input
-                  type="checkbox"
-                  className="checkbox_feedback"
-                  name={"feed" + index}
-                  value={index}
-                  onChange={(e) => { e.stopPropagation(); this.change_feedback(index); }}
-                />
-                {reply.get('title')}
-              </div>
-            );
+            if (reply) {
+              return (
+                <div
+                  key={"feedb" + index}
+                >
+                  <input
+                    type="checkbox"
+                    className="checkbox_feedback"
+                    name={"feed" + index}
+                    value={index}
+                    onChange={(e) => { e.stopPropagation(); this.change_feedback(index); }}
+                  />
+                  {this.get_title(reply)}
+                </div>
+              );
+            }
           })}
           <input
             type="submit"

@@ -1,18 +1,24 @@
 .rw-conversation-container .rw-header{
-    background-color: #0072BC;
+    background-color: #0cc2aa;
 }
 
 .rw-conversation-container .rw-client{
-       background-color: #0072BC !important; 
+       background-color: #0cc2aa !important; 
 }
 
 .conversation-container close-button {
-    background-color: #0072BC;
+    background-color: #0cc2aa;
 }
 
 .rw-launcher{
-    background-color: #135afe;
+    background-color: #0cc2aa;
     padding: 1px 6px;
+}
+
+/* Quick Reply button */
+.rw-conversation-container .rw-reply {
+    background-color: #0cc2aa;
+    border-color: #0cc2aa;
 }
 
 /*.text-area{  
@@ -93,6 +99,32 @@
 
 /* multiple quick replies buttons */
 .rw-conversation-container .rw-reply-mult {
+    transition: box-shadow 0.3s ease, top 0.3s ease;
+    display: flex;
+    align-items: center;
+    background-color: #79B51C;
+    border-color: #79B51C;
+    border-radius: 15px;
+    border-width: 1px;
+    color: #f4f7f9;
+    border-style: solid;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    max-width: 700px;
+    min-height: 1.7em;
+    font-weight: 500;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    margin: 0.25em;
+    text-decoration: unset;
+    box-shadow: 0 0.2px 0.7px -7px rgb(0 0 0 / 28%), 0 0.5px 1.8px -7px rgb(0 0 0 / 37%), 0 1.2px 3.8px -7px rgb(0 0 0 / 44%), 0 4px 13px -7px rgb(0 0 0 / 64%);
+}
+
+/* Aucun button for quick replies keywords */
+.rw-conversation-container .rw-no-reply {
     -webkit-transition: box-shadow 0.3s ease, top 0.3s ease;
     -moz-transition: box-shadow 0.3s ease, top 0.3s ease;
     -o-transition: box-shadow 0.3s ease, top 0.3s ease;
@@ -106,8 +138,8 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    background-color: #135afe;
-    border-color: #135afe;
+    background-color: gray;
+    border-color: darkgray;
     border-radius: 15px;
     border-width: 1px;
     color: #f4f7f9;
@@ -116,7 +148,7 @@
     padding-left: 8px;
     padding-bottom: 4px;
     padding-top: 4px;
-    max-width: 700px;
+    max-width: 50px;
     min-height: 1.7em;
     font-weight: 500;
     text-align: center;
